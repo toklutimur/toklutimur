@@ -2,21 +2,12 @@
 
 ## Scope
 
-The GitHub **profile README** repository (`toklutimur/toklutimur`). Its only
-tracked file is `README.md`, which GitHub renders on
-<https://github.com/toklutimur>. There is no application, no build step, no
-dependency, and there never should be one here — code belongs in a real project
-repo, this one is a public self-presentation page.
-
-## Layout
-
-- `README.md` — the entire repository: intro, work areas, tech interests,
-  selected work, background, links.
+The GitHub **profile README** repo (`toklutimur/toklutimur`). Its only tracked
+file is `README.md`, rendered on <https://github.com/toklutimur>. No application,
+build step or dependency, and never one here — code belongs in a real project repo.
 
 ## Working Rules
 
-- The default branch is **`master`**, not `main`. PR base is `master`; a PR
-  opened against `main` will fail.
 - GitHub-flavoured Markdown only, and only the subset GitHub renders in a
   profile README. HTML `<img>`/`<div>` alignment tricks and badge walls are a
   deliberate non-goal — keep the plain, text-first tone of the current file.
@@ -32,31 +23,23 @@ repo, this one is a public self-presentation page.
 
 ## Gate commands
 
-No automated gate exists — no test suite, no linter, no build, and installing
-one for a single Markdown file is out of scope. The checks are:
+No automated gate exists (no tests, linter or build). The checks are:
 
 - `Read` the file back after editing and confirm the Markdown is well formed
   (headings, list markers, inline-code backticks balanced).
 - Link check, per outbound URL, expecting `200`:
   `curl -o /dev/null -s -w "%{http_code}\n" --max-time 20 https://toklutimur.uk`
   `curl -o /dev/null -s -w "%{http_code}\n" --max-time 20 https://github.com/toklutimur`
-- After merge, open <https://github.com/toklutimur> and look at the rendered
-  profile. Rendering is the only real gate this repo has.
+- After merge, open <https://github.com/toklutimur>: rendering is the only real gate.
 
 ## Definition of Done (narrows the global default)
 
 - Gates: the read-back plus a `200` from every outbound URL.
-- Visual proof: the rendered profile page at <https://github.com/toklutimur>,
-  checked after merge — a local Markdown preview is not proof.
-- Merge: PR against `master`, `gh pr merge --squash --delete-branch`.
-- Deploy: none — GitHub renders `master` directly. Live check: the profile page.
-- Tests/typecheck/build items of the global default are dropped: a single
-  Markdown file has nothing to compile.
+- Merge: squash, delete branch.
+- Deploy: none — GitHub renders `main` directly.
 - User-only steps (report, do not attempt): any change to biographical facts,
   job title, location, or which projects are worth showing.
 
 ## Agent loop
 
-- Worker edits `README.md`; reviewer reads it back and re-runs the link checks.
-- The trap: `master`, not `main`. An agent that branches off or targets `main`
-  creates an orphan branch and a PR that cannot merge.
+- Base branch is `main`; PR base `main`.
