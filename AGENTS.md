@@ -8,8 +8,6 @@ build step or dependency, and never one here — code belongs in a real project 
 
 ## Working Rules
 
-- The default branch is **`master`**, not `main`. PR base is `master`; a PR
-  opened against `main` will fail.
 - GitHub-flavoured Markdown only, and only the subset GitHub renders in a
   profile README. HTML `<img>`/`<div>` alignment tricks and badge walls are a
   deliberate non-goal — keep the plain, text-first tone of the current file.
@@ -38,11 +36,10 @@ No automated gate exists (no tests, linter or build). The checks are:
 
 - Gates: the read-back plus a `200` from every outbound URL.
 - Merge: squash, delete branch.
-- Deploy: none — GitHub renders `master` directly.
+- Deploy: none — GitHub renders `main` directly.
 - User-only steps (report, do not attempt): any change to biographical facts,
   job title, location, or which projects are worth showing.
 
 ## Agent loop
 
-- The trap: `master`, not `main`. An agent that branches off or targets `main`
-  creates an orphan branch and a PR that cannot merge.
+- Base branch is `main`; PR base `main`.
