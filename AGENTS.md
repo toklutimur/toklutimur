@@ -43,3 +43,20 @@ No automated gate exists (no tests, linter or build). The checks are:
 ## Agent loop
 
 - Base branch is `main`; PR base `main`.
+
+<!-- harness:shared v3 - source ~/.claude/templates/AGENTS-agent-loop.md; edit there -->
+
+## Agent behaviour (shared)
+
+- The main session orchestrates: it reads git, this file, state/plan files and agent
+  reports; source, diffs, test output and data are read by subagents.
+- Every dispatch names its model: Explore/haiku locate, worker/sonnet mechanical edit,
+  worker/opus judgement or risk, reviewer/opus verdicts. Never fable as a subagent.
+- Leave no artefacts: scratch output goes to the session scratchpad, not the repo root;
+  delete or gitignore anything untracked you created before reporting DONE.
+- Visual work (UI repos): the brief lists VISUAL ACCEPTANCE criteria and a
+  "must not change" list; the reviewer compares before/after screenshots at
+  the viewport or device this file's Definition of Done names, and the live URL
+  or device after deploy. Two fixes on one subject = stop, re-scope.
+
+<!-- /harness:shared -->
